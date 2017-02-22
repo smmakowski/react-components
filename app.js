@@ -1,3 +1,34 @@
+/// Class based component
+// funcitonia
+class GroceryListItem extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			done: false
+		};
+	}
+
+	onListItemClick() {
+		this.setState({
+			done: !this.state.done
+		});
+	}
+
+	render() {
+		var style = {
+			'font-weight': this.state.done ? 'bold' : 'normal'
+		};
+
+		return (
+				<li style={style} onMouseOver={this.onListItemClick.bind(this)}>{this.props.items}</li>	
+		);
+	} 
+}
+
+
+///// this works
+/*
 var GroceryListItem = (props) => {
 	var onListItemClick = (event) => {
 		console.log('I got clicked');
@@ -11,24 +42,19 @@ var GroceryListItem = (props) => {
 	</ul>
 	);
 }
+*/
+
+var item = ['Bacon', 'Whiskey', 'Cabbage']
 
 var GroceryList = () => (
 	<div>
-	<h2>sfkjsadkf</h2>
-		<GroceryListItem items={['lettuce', 'tommato', 'onions']} />
+	<h2>Grocery List</h2>
+		<GroceryListItem items={item[1]} />
+		<GroceryListItem items={item[0]} />
+		<GroceryListItem items={item[2]} />
 	</div>
 ); 
 
 
-
-// var Cucumber = () => (
-// 	<li>Cucumber</li>
-// );
-
-// var Kale = () => (
-// 	<li>Kale</li>
-// );
-
-
-
 ReactDOM.render(<GroceryList />, document.getElementById('app'));
+
